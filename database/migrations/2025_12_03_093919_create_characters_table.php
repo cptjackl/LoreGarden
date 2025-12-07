@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('characters', function (Blueprint $table) {
-            $table->id();
+             $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->string('image')->nullable();
+            $table->foreignId('location')->nullable()->constrained('locations')->onDelete('set null');
+            $table->foreignId('creator')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

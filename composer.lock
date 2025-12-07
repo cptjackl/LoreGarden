@@ -4,8 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "59c247cfc8e4f0bc686ba1130ac3ce6e",
+    "content-hash": "45c8adf9b185a752c7aa1573eebc4dce",
     "packages": [
+        {
+            "name": "andreasindal/rpgfaker",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andreasindal/rpgfaker.git",
+                "reference": "1c7a89eecdb072ba7d680d2b7ff35717bbfc70af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andreasindal/rpgfaker/zipball/1c7a89eecdb072ba7d680d2b7ff35717bbfc70af",
+                "reference": "1c7a89eecdb072ba7d680d2b7ff35717bbfc70af",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RPGFaker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Indal",
+                    "email": "andreas@rocketship.se"
+                }
+            ],
+            "description": "RPGFaker is a library to generate names for your fantasy games.",
+            "keywords": [
+                "faker",
+                "fantasy",
+                "generator",
+                "name",
+                "rpg"
+            ],
+            "support": {
+                "issues": "https://github.com/andreasindal/rpgfaker/issues",
+                "source": "https://github.com/andreasindal/rpgfaker/tree/master"
+            },
+            "time": "2017-05-12T07:26:34+00:00"
+        },
         {
             "name": "bacon/bacon-qr-code",
             "version": "v3.0.3",

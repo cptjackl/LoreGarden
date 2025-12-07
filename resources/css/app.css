@@ -45,6 +45,18 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentColor);
     }
+
+    /* Global parchment background */
+        html {
+            background-image: url('/images/parchment-texture.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+        .dark html {
+            background-image: url('/images/parchment-texture-dark.jpg');
+    }
 }
 
 [data-flux-field]:not(ui-radio, ui-checkbox) {

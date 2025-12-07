@@ -9,4 +9,26 @@ class Location extends Model
 {
     /** @use HasFactory<\Database\Factories\LocationFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'description',
+        'image',
+        'creator'
+    ];
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'creator');
+    }
+
+    public function characters()
+    {
+        return $this->hasMany(Character::class, 'location');
+    }
+
+    public function artifacts()
+    {
+        return $this->hasMany(Artifact::class, 'location');
+    }
 }
