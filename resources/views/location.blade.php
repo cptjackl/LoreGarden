@@ -29,7 +29,7 @@ prompt:now make it so taht the fields are only editable if the current user is t
 
 			<div class="mt-6 rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-700 dark:bg-zinc-800" x-show="open" x-transition>
 			<h2 class="mb-3 text-lg font-semibold text-zinc-900 dark:text-zinc-100">Edit Location</h2>
-			<form method="POST" action="{{ route('location.update', ['id' => $location->id]) }}" class="space-y-4">
+			<form method="POST" action="{{ route('locations.update', $location) }}" class="space-y-4">
 				@csrf
 				@method('PUT')
 				<div>
@@ -48,12 +48,12 @@ prompt:now make it so taht the fields are only editable if the current user is t
 					@error('image')<p class="text-red-600 text-sm">{{ $message }}</p>@enderror
 				</div>
 				<div class="flex justify-end gap-2">
-					<a href="{{ route('locations') }}" class="inline-flex items-center rounded border px-3 py-2 text-sm dark:border-zinc-700">Cancel</a>
+					<a href="{{ route('locations.index') }}" class="inline-flex items-center rounded border px-3 py-2 text-sm dark:border-zinc-700">Cancel</a>
 					<button type="submit" class="inline-flex items-center rounded bg-zinc-900 px-3 py-2 text-sm text-white dark:bg-zinc-100 dark:text-zinc-900">Save</button>
 				</div>
 			</form>
 
-			<form method="POST" action="{{ route('location.delete', ['id' => $location->id]) }}" class="mt-4 flex justify-end" onsubmit="return confirm('Are you sure you want to delete this location?');">
+			<form method="POST" action="{{ route('locations.destroy', $location) }}" class="mt-4 flex justify-end" onsubmit="return confirm('Are you sure you want to delete this location?');">
 				@csrf
 				@method('DELETE')
 				<button type="submit" class="inline-flex items-center rounded bg-red-600 px-3 py-2 text-sm text-white">Delete Location</button>
@@ -65,12 +65,12 @@ prompt:now make it so taht the fields are only editable if the current user is t
 
 		<div class="mt-8">
 			<h2 class="mb-3 text-lg font-semibold text-zinc-900 dark:text-zinc-100">Characters at this location</h2>
-			<livewire:search :modelClass="App\Models\Character::class" :filters="['location' => $location->id]" hrefBase="/character" />
+			<livewire:search :modelClass="App\Models\Character::class" :filters="['location' => $location->id]" hrefBase="/characters" />
 		</div>
 
 		<div class="mt-8">
 			<h2 class="mb-3 text-lg font-semibold text-zinc-900 dark:text-zinc-100">Artifacts at this location</h2>
-			<livewire:search :modelClass="App\Models\Artifact::class" :filters="['location' => $location->id]" hrefBase="/artifact" />
+			<livewire:search :modelClass="App\Models\Artifact::class" :filters="['location' => $location->id]" hrefBase="/artifacts" />
 		</div>
 	</div>
 </x-layouts.app>

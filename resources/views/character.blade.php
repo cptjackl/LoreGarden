@@ -30,7 +30,7 @@ prompt: ok great, now create the same sort of edit/delete forms for the characte
 
 			<div class="mt-6 rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-700 dark:bg-zinc-800" x-show="open" x-transition>
 				<h2 class="mb-3 text-lg font-semibold text-zinc-900 dark:text-zinc-100">Edit Character</h2>
-				<form method="POST" action="{{ route('character.update', ['id' => $character->id]) }}" class="space-y-4">
+				<form method="POST" action="{{ route('characters.update', $character) }}" class="space-y-4">
 					@csrf
 					@method('PUT')
 					<div>
@@ -59,12 +59,12 @@ prompt: ok great, now create the same sort of edit/delete forms for the characte
 						@error('location')<p class="text-red-600 text-sm">{{ $message }}</p>@enderror
 					</div>
 					<div class="flex justify-end gap-2">
-						<a href="{{ route('character.display', ['id' => $character->id]) }}" class="inline-flex items-center rounded border px-3 py-2 text-sm dark:border-zinc-700">Cancel</a>
+						<a href="{{ route('characters.show', $character) }}" class="inline-flex items-center rounded border px-3 py-2 text-sm dark:border-zinc-700">Cancel</a>
 						<button type="submit" class="inline-flex items-center rounded bg-zinc-900 px-3 py-2 text-sm text-white dark:bg-zinc-100 dark:text-zinc-900">Save</button>
 					</div>
 				</form>
 
-				<form method="POST" action="{{ route('character.delete', ['id' => $character->id]) }}" class="mt-4 flex justify-end" onsubmit="return confirm('Are you sure you want to delete this character?');">
+				<form method="POST" action="{{ route('characters.destroy', $character) }}" class="mt-4 flex justify-end" onsubmit="return confirm('Are you sure you want to delete this character?');">
 					@csrf
 					@method('DELETE')
 					<button type="submit" class="inline-flex items-center rounded bg-red-600 px-3 py-2 text-sm text-white">Delete Character</button>
@@ -80,7 +80,7 @@ prompt: ok great, now create the same sort of edit/delete forms for the characte
 			@if($character->location)
 				@php
 					$location = $character->relationLoaded('location') ? $character->location : \App\Models\Location::find($character->location);
-					$href = route('location.display', ['id' => $location->id]);
+					$href = route('locations.show', $location);
 				@endphp
 				<x-record-card :record="$location" :href="$href" compact />
 			@else
@@ -90,7 +90,7 @@ prompt: ok great, now create the same sort of edit/delete forms for the characte
 
 		<div class="mt-8">
 			<h2 class="mb-3 text-lg font-semibold text-zinc-900 dark:text-zinc-100">Artifacts owned by this character</h2>
-			<livewire:search :modelClass="App\Models\Artifact::class" :filters="['owner' => $character->id]" hrefBase="/artifact" />
+			<livewire:search :modelClass="App\Models\Artifact::class" :filters="['owner' => $character->id]" hrefBase="/artifacts" />
 		</div>
 	</div>
 </x-layouts.app>

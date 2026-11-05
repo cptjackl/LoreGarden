@@ -14,9 +14,9 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                    <flux:navlist.item icon="map-pin" :href="route('locations')" :current="request()->routeIs('locations')" wire:navigate>{{ __('Locations') }}</flux:navlist.item>
-                    <flux:navlist.item icon="user" :href="route('characters')" :current="request()->routeIs('characters')" wire:navigate>{{ __('Characters') }}</flux:navlist.item>
-                    <flux:navlist.item icon="trophy" :href="route('artifacts')" :current="request()->routeIs('artifacts')" wire:navigate>{{ __('Artifacts') }}</flux:navlist.item>
+                    <flux:navlist.item icon="map-pin" :href="route('locations.index')" :current="request()->routeIs('locations.index')" wire:navigate>{{ __('Locations') }}</flux:navlist.item>
+                    <flux:navlist.item icon="user" :href="route('characters.index')" :current="request()->routeIs('characters.index')" wire:navigate>{{ __('Characters') }}</flux:navlist.item>
+                    <flux:navlist.item icon="trophy" :href="route('artifacts.index')" :current="request()->routeIs('artifacts.index')" wire:navigate>{{ __('Artifacts') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 

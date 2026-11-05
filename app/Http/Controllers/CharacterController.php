@@ -15,7 +15,7 @@ class CharacterController extends Controller
         return view('/characters', ['characters' => $characters]);
     }
 
-    public function display($id)
+    public function show($id)
     {
         $character = Character::findOrFail($id);
         $locations = Location::orderBy('name')->get(['id', 'name']);
@@ -34,14 +34,14 @@ class CharacterController extends Controller
         ]);
         $character->update($validated);
 
-        return redirect()->route('character.display', ['id' => $character->id]);
+        return redirect()->route('characters.show', $character);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $character = Character::findOrFail($id);
         $character->delete();
 
-        return redirect()->route('characters');
+        return redirect()->route('characters.index');
     }
 }

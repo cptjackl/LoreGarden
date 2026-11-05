@@ -18,7 +18,7 @@ class ArtifactController extends Controller
         return view('/artifacts', ['artifacts' => $artifacts]);
     }
 
-    public function display($id)
+    public function show($id)
     {
         $artifact = Artifact::findOrFail($id);
         $characters = Character::orderBy('name')->get(['id', 'name']);
@@ -39,14 +39,14 @@ class ArtifactController extends Controller
         ]);
         $artifact->update($validated);
 
-        return redirect()->route('artifact.display', ['id' => $artifact->id]);
+        return redirect()->route('artifacts.show', $artifact);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $artifact = Artifact::findOrFail($id);
         $artifact->delete();
 
-        return redirect()->route('artifacts');
+        return redirect()->route('artifacts.index');
     }
 }

@@ -4,7 +4,7 @@ LoreGarden is a worldbuilding app for tabletop RPG and fiction writers. Authenti
 
 Created as a term capstone project for Web Programming Languages, and also serves as a portfolio piece demonstrating a modern Laravel + Livewire stack.
 
-The app follows a RESTful routing design: each record type has an index route (`GET /locations`), a detail route (`GET /location/{id}`), and `PUT` and `DELETE` routes for updating and removing records, all behind authentication (see [routes/web.php](routes/web.php)).
+The app follows RESTful resource routing: each record type (`locations`, `characters`, `artifacts`) is registered with `Route::resource`, giving `GET /locations`, `GET /locations/{id}`, `PUT /locations/{id}` and `DELETE /locations/{id}`, all behind authentication (see [routes/web.php](routes/web.php)). Records are created through Livewire components rather than a `POST` route.
 
 ## Tech stack
 
@@ -58,7 +58,7 @@ Eloquent and database features in use:
 - Dashboard plus index and detail pages for locations, characters and artifacts
 - Create forms implemented as Livewire components (`CreateLocation`, `CreateCharacter`, `CreateArtifact`)
 - Reusable live **search/filter** component that works for any model
-- Update and delete through RESTful routes (`PUT` / `DELETE`) on controllers
+- Update and delete through resource routes (`PUT` / `DELETE`) on controllers (`show`, `update`, `destroy`)
 - Reusable Blade components (`record-card`, `record-table`) shared across the three record types
 - Light/dark appearance setting
 

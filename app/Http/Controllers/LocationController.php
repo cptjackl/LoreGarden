@@ -15,7 +15,7 @@ class LocationController extends Controller
         return view('/locations', ['locations' => $locations]);
     }
 
-    public function display($id)
+    public function show($id)
     {
         $location = Location::findOrFail($id);
 
@@ -43,14 +43,14 @@ class LocationController extends Controller
         ]);
         $location->update($validated);
 
-        return redirect()->route('locations');
+        return redirect()->route('locations.index');
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $location = Location::findOrFail($id);
         $location->delete();
 
-        return redirect()->route('locations');
+        return redirect()->route('locations.index');
     }
 }

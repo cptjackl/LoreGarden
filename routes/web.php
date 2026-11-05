@@ -17,20 +17,12 @@ Route::get('/',function(){
 })->middleware('auth')->name('home');   
 
 
-Route::get('/locations', [LocationController::class, 'index'])->name('locations')->middleware('auth');
-Route::get('/location/{id}', [LocationController::class, 'display'])->middleware('auth')->name('location.display');
-Route::put('/location/{id}', [LocationController::class, 'update'])->middleware('auth')->name('location.update');
-Route::delete('/location/{id}', [LocationController::class, 'delete'])->middleware('auth')->name('location.delete');
-
-Route::get('/characters', [CharacterController::class, 'index'])->name('characters')->middleware('auth');
-Route::get('/character/{id}', [CharacterController::class, 'display'])->middleware('auth')->name('character.display');
-Route::put('/character/{id}', [CharacterController::class, 'update'])->middleware('auth')->name('character.update');
-Route::delete('/character/{id}', [CharacterController::class, 'delete'])->middleware('auth')->name('character.delete');
-
-Route::get('/artifacts', [ArtifactController::class, 'index'])->name('artifacts')->middleware('auth');
-Route::get('/artifact/{id}', [ArtifactController::class, 'display'])->middleware('auth')->name('artifact.display');
-Route::put('/artifact/{id}', [ArtifactController::class, 'update'])->middleware('auth')->name('artifact.update');
-Route::delete('/artifact/{id}', [ArtifactController::class, 'delete'])->middleware('auth')->name('artifact.delete');
+// Resource routes; records are created through the Livewire Create* components
+Route::middleware('auth')->group(function () {
+    Route::resource('locations', LocationController::class)->only(['index', 'show', 'update', 'destroy']);
+    Route::resource('characters', CharacterController::class)->only(['index', 'show', 'update', 'destroy']);
+    Route::resource('artifacts', ArtifactController::class)->only(['index', 'show', 'update', 'destroy']);
+});
 
 Route::view('dashboard', 'dashboard')->name('dashboard')->middleware('auth');
 

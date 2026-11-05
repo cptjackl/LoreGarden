@@ -20,7 +20,7 @@ prompt:OK great, now for the Dashboard page I want it to display a searchable bo
          @if($locationCount === 0)
             <p class="text-sm text-zinc-600 dark:text-zinc-400">You haven't created any locations yet.</p>
          @else
-            <livewire:search :modelClass="App\Models\Location::class" :filters="['creator' => $userId]" hrefBase="/location" />
+            <livewire:search :modelClass="App\Models\Location::class" :filters="['creator' => $userId]" hrefBase="/locations" />
          @endif
       </div>
 
@@ -29,7 +29,7 @@ prompt:OK great, now for the Dashboard page I want it to display a searchable bo
          @if($characterCount === 0)
             <p class="text-sm text-zinc-600 dark:text-zinc-400">You haven't created any characters yet.</p>
          @else
-            <livewire:search :modelClass="App\Models\Character::class" :filters="['creator' => $userId]" hrefBase="/character" />
+            <livewire:search :modelClass="App\Models\Character::class" :filters="['creator' => $userId]" hrefBase="/characters" />
          @endif
       </div>
 
@@ -38,7 +38,7 @@ prompt:OK great, now for the Dashboard page I want it to display a searchable bo
          @if($artifactCount === 0)
             <p class="text-sm text-zinc-600 dark:text-zinc-400">You haven't created any artifacts yet.</p>
          @else
-            <livewire:search :modelClass="App\Models\Artifact::class" :filters="['creator' => $userId]" hrefBase="/artifact" />
+            <livewire:search :modelClass="App\Models\Artifact::class" :filters="['creator' => $userId]" hrefBase="/artifacts" />
          @endif
       </div>
    </div>

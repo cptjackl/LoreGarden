@@ -28,7 +28,7 @@ prompt: great, add the same create/edit/delete functionality from locations and 
 
 			<div class="mt-6 rounded-lg border border-zinc-200 bg-white p-6 dark:border-zinc-700 dark:bg-zinc-800" x-show="open" x-transition>
 				<h2 class="mb-3 text-lg font-semibold text-zinc-900 dark:text-zinc-100">Edit Artifact</h2>
-				<form method="POST" action="{{ route('artifact.update', ['id' => $artifact->id]) }}" class="space-y-4">
+				<form method="POST" action="{{ route('artifacts.update', $artifact) }}" class="space-y-4">
 					@csrf
 					@method('PUT')
 					<div>
@@ -67,12 +67,12 @@ prompt: great, add the same create/edit/delete functionality from locations and 
 						@error('location')<p class="text-red-600 text-sm">{{ $message }}</p>@enderror
 					</div>
 					<div class="flex justify-end gap-2">
-						<a href="{{ route('artifact.display', ['id' => $artifact->id]) }}" class="inline-flex items-center rounded border px-3 py-2 text-sm dark:border-zinc-700">Cancel</a>
+						<a href="{{ route('artifacts.show', $artifact) }}" class="inline-flex items-center rounded border px-3 py-2 text-sm dark:border-zinc-700">Cancel</a>
 						<button type="submit" class="inline-flex items-center rounded bg-zinc-900 px-3 py-2 text-sm text-white dark:bg-zinc-100 dark:text-zinc-900">Save</button>
 					</div>
 				</form>
 
-				<form method="POST" action="{{ route('artifact.delete', ['id' => $artifact->id]) }}" class="mt-4 flex justify-end" onsubmit="return confirm('Are you sure you want to delete this artifact?');">
+				<form method="POST" action="{{ route('artifacts.destroy', $artifact) }}" class="mt-4 flex justify-end" onsubmit="return confirm('Are you sure you want to delete this artifact?');">
 					@csrf
 					@method('DELETE')
 					<button type="submit" class="inline-flex items-center rounded bg-red-600 px-3 py-2 text-sm text-white">Delete Artifact</button>
@@ -88,7 +88,7 @@ prompt: great, add the same create/edit/delete functionality from locations and 
 			<h2 class="mb-3 text-lg font-semibold text-zinc-900 dark:text-zinc-100">Owner</h2>
 			@php
 				$owner = $artifact->relationLoaded('ownedBy') ? $artifact->ownedBy : \App\Models\Character::find($artifact->owner);
-				$href = route('character.display', ['id' => $owner->id]);
+				$href = route('characters.show', $owner);
 			@endphp
 			<x-record-card :record="$owner" :href="$href" compact />
 		</div>
@@ -99,7 +99,7 @@ prompt: great, add the same create/edit/delete functionality from locations and 
 			<h2 class="mb-3 text-lg font-semibold text-zinc-900 dark:text-zinc-100">Location</h2>
 			@php
 				$location = $artifact->relationLoaded('location') ? $artifact->location : \App\Models\Location::find($artifact->location);
-				$href = route('location.display', ['id' => $location->id]);
+				$href = route('locations.show', $location);
 			@endphp
 			<x-record-card :record="$location" :href="$href" compact />
 		</div>
